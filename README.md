@@ -36,7 +36,7 @@ rf-engineering-assistant/
 ```
 ## Architecture 
 
-``
+```
      FRONTEND (React 19 + Tailwind)
      ┌─────────────────────────────────────────────┐
      │  AuthPage    ChatWindow    DocumentManager   │
@@ -91,6 +91,7 @@ rf-engineering-assistant/
    │  converstns  │                 │  rf_meta.pkl    │
    │  documents   │                 │  /uploads dir   │
    └──────────────┘                 └─────────────────┘
+```
 
 ## Local Setup
 
