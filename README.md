@@ -12,6 +12,8 @@
 
 [Features](#features) • [Quick Start](#quick-start) • [Usage](#usage) • [API](#api-reference) • [Architecture](#architecture) • [Deployment](#deployment)
 
+</div>
+
 ---
 
 ## What is this?
