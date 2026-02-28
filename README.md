@@ -1,6 +1,6 @@
-# RF Engineering ChatBot
-
 <div align="center">
+  
+# RF Engineering ChatBot
 
 ![MIT License](https://img.shields.io/badge/License-MIT-green.svg)
 ![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
