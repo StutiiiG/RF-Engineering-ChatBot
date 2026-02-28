@@ -34,6 +34,65 @@ rf-engineering-assistant/
     │   └── index.css
     └── package.json
 ```
+## Architecture 
+
+RF ENGINEERING ASSISTANT
+                    ========================
+
+     FRONTEND (React 19 + Tailwind)
+     ┌─────────────────────────────────────────────┐
+     │  AuthPage    ChatWindow    DocumentManager   │
+     │  Sidebar     ModelSelector  SourceCitations  │
+     └────────────────────┬────────────────────────┘
+                          │  REST / JSON
+                          ▼
+     BACKEND (FastAPI + Python 3.10)
+     ┌─────────────────────────────────────────────┐
+     │                                             │
+     │  ┌───────────┐  ┌──────────┐  ┌─────────┐  │
+     │  │ JWT Auth  │  │  Router  │  │  Motor  │  │
+     │  │ bcrypt    │→ │ /api/*   │→ │ async   │  │
+     │  │ HS256     │  │ Pydantic │  │ MongoDB │  │
+     │  └───────────┘  └────┬─────┘  └─────────┘  │
+     │                      │                      │
+     └──────────────────────┼──────────────────────┘
+                            │
+              ┌─────────────▼─────────────┐
+              │       RAG PIPELINE        │
+              │                           │
+              │  PDF Upload               │
+              │      → chunk (500w/50w)   │
+              │      → embed (MiniLM)     │
+              │      → FAISS index        │
+              │                           │
+              │  Query                    │
+              │      → embed query        │
+              │      → top-k=5 search     │
+              │      → inject as context  │
+              └─────────────┬─────────────┘
+                            │
+              ┌─────────────▼─────────────┐
+              │      LLM PROVIDERS        │
+              │   LLMProvider.generate()  │
+              │                           │
+              │  ┌───────┐ ┌────────────┐ │
+              │  │OpenAI │ │ Anthropic  │ │
+              │  │ gpt4o │ │ claude-4-5 │ │
+              │  └───────┘ └────────────┘ │
+              │  ┌──────────────────────┐ │
+              │  │ Google gemini-flash  │ │
+              │  └──────────────────────┘ │
+              └─────────────┬─────────────┘
+                            │
+          ┌─────────────────┴──────────────────┐
+          │                                    │
+   ┌──────▼───────┐                 ┌──────────▼──────┐
+   │   MongoDB    │                 │  FAISS on disk  │
+   │              │                 │                 │
+   │  users       │                 │  rf_index.faiss │
+   │  converstns  │                 │  rf_meta.pkl    │
+   │  documents   │                 │  /uploads dir   │
+   └──────────────┘                 └─────────────────┘
 
 ## Local Setup
 
