@@ -158,6 +158,8 @@ class RAGEngine:
         
     async def initialize(self):
         """Initialize the embedding model and load existing index"""
+        if self.embedding_model is not None:
+            return  # Already initialized
         logger.info("Initializing RAG Engine...")
         self.embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
         
@@ -744,8 +746,15 @@ app.add_middleware(
 # Startup event
 @app.on_event("startup")
 async def startup():
-    await rag_engine.initialize()
-    logger.info("RF-Intel API started")
+    logger.info("RF-Intel API started - RAG engine will initialize on first use")
+    # Kick off model download in background so it doesn't block port binding
+    asyncio.create_task(_init_rag_background())
+
+async def _init_rag_background():
+    try:
+        await rag_engine.initialize()
+    except Exception as e:
+        logger.error(f"Background RAG init failed: {e}")
 
 @app.on_event("shutdown")
 async def shutdown():
