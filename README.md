@@ -1,5 +1,7 @@
 # RF Engineering Assistant
 
+<div align="center">
+
 ![MIT License](https://img.shields.io/badge/License-MIT-green.svg)
 ![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
 ![React](https://img.shields.io/badge/React-19.0-61dafb.svg)
