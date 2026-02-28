@@ -36,9 +36,7 @@ rf-engineering-assistant/
 ```
 ## Architecture 
 
-RF ENGINEERING ASSISTANT
-                    ========================
-
+``
      FRONTEND (React 19 + Tailwind)
      ┌─────────────────────────────────────────────┐
      │  AuthPage    ChatWindow    DocumentManager   │
