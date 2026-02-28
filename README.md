@@ -132,8 +132,3 @@ GOOGLE_API_KEY=AIza...
 
 You only need API keys for the models you want to enable.
 
-## Architecture Notes
-
-The RAG pipeline uses FAISS for vector similarity search and `all-MiniLM-L6-v2` for embeddings. Documents are chunked with overlap for better retrieval. Retrieved chunks are injected into the system prompt with source citations shown under each response.
-
-Authentication uses JWT tokens with bcrypt password hashing. Conversation history is persisted to MongoDB per user.
