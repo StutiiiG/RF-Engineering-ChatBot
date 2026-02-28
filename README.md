@@ -1,4 +1,4 @@
-# RF Engineering Assistant
+# RF Engineering ChatBot
 
 <div align="center">
 
