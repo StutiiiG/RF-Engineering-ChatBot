@@ -91,6 +91,7 @@ rf-engineering-assistant/
    │  converstns  │                 │  rf_meta.pkl    │
    │  documents   │                 │  /uploads dir   │
    └──────────────┘                 └─────────────────┘
+
 ```
 
 ## Local Setup
