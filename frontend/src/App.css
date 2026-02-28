@@ -1,0 +1,44 @@
+/* App.css - RF-Intel specific styles */
+
+.App {
+  min-height: 100vh;
+  background-color: #09090b;
+}
+
+/* Line clamp utility */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Focus visible styles */
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Smooth transitions */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Prevent text selection on buttons */
+button {
+  user-select: none;
+}
+
+/* Active state for buttons */
+button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+/* Textarea auto-resize prevention */
+textarea {
+  field-sizing: content;
+}
