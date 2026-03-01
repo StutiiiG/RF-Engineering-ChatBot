@@ -161,7 +161,10 @@ class RAGEngine:
         if self.embedding_model is not None:
             return  # Already initialized
         logger.info("Initializing RAG Engine...")
-        self.embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
+        loop = asyncio.get_event_loop()
+        self.embedding_model = await loop.run_in_executor(
+            None, lambda: SentenceTransformer("all-MiniLM-L6-v2")
+        )
         
         # Create data directory
         (ROOT_DIR / "data").mkdir(exist_ok=True)
@@ -755,6 +758,7 @@ async def _init_rag_background():
         await rag_engine.initialize()
     except Exception as e:
         logger.error(f"Background RAG init failed: {e}")
+
 
 @app.on_event("shutdown")
 async def shutdown():
